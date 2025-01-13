@@ -4,6 +4,18 @@
 using Markdown
 using InteractiveUtils
 
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    #! format: off
+    quote
+        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
+        el
+    end
+    #! format: on
+end
+
 # ╔═╡ 24d45f40-d163-11ef-052e-178c849ce1b2
 using Plots, PlutoUI, HypertextLiteral, Plots
 
@@ -226,8 +238,162 @@ md"""
 
 É uma sub-disciplina da engenharia de petróleo que procura: (1) Determinar e (2) Maximizar valores finais de HC, água ou recursos armazenados nos reservatórios
 
-![]()
+![Reservatohrio](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/images/reservatohrio.png?raw=true)
+
+## Pilares da Engenharia de Reservatórios
+1. Lei de Darcy, fluxo de fluido, propriedades dos fluidos
+2. Balanço de material
+3. Observação dos dados e compreensão, coerente e consistente, do campo. **ANTES DE QUALQUER SIMULAÇÃO**
+
+
+![](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/images/water.png?raw=true)
 """
+
+# ╔═╡ 2e1d5ff0-2597-43f6-89bf-416121f17663
+let
+	a = range(10,60,21)
+	yg = range(0.3,2,21)
+	Temp = range(100,200,21)
+	press = range(1400,4400,21)
+	md"""
+	# Conceitos fundamentais Prop. Fluidos
+	
+	- Diagramas P-T e os tipos de reservatórios *Gry Gas, Wet Gas, Condensate, Volatile oil, Blackoil*
+	- Conceitos de petróleo **saturado e subsaturado**
+	- Densidade, grau API, e densidade específica (SG)
+	- Fator volume formação e razão de solubilidade
+	- Fator de compressibilidade de gases (misturas) e compressibilidade da formação
+	
+	![](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/images/p-t.png?raw=true)
+
+	
+	API   [-]: $(@bind API Slider(a, show_value=true, default=33)) 
+	γg    [-]: $(@bind γg Slider(yg, show_value=true, default=0.6))
+	
+	T    [°F]: $(@bind T Slider(Temp, show_value=true, default=144))
+	Pb  [psia]: $(@bind pb Slider(press.*1.33, show_value=true, default=2400))
+	"""
+end
+
+# ╔═╡ a874ace1-3706-4e47-a682-cde5f529538d
+begin
+	# If experimental data, fill bubble point values (at the end) and tune using this parameters
+	TF01 = 1.0 # Tuning factor 1 
+	TF02 = 1.0 # Tuning factor 2
+	TF03 = 1.0 # Tuning factor 3
+	TF04 = 1.0 # Tuning factor 4
+
+	# ----------------------------< auxilary function >------------------------
+	# specific gravity of oil
+	γoil(a) = 141.5 / (131.5 + a)
+	
+	# solution gas-oil ratio of saturated oil (Rs scf/stb)
+	Rs(a,yg,T,p, FO1) = yg * (10 ^ (0.0125 * a - 0.00091 * T) * p / (18.2 * FO1)) ^ (1 / 0.83)
+
+	# bubble point pressure (Pb psia) from Frick.
+	Pbubble(a,yg,T,gor,FO1) = 18 * FO1 * (gor / yg) ^ 0.83 * 10 ^ (0.00091 * T - 0.0125 * a)
+
+	# oil formation volume factor (Bo rbl/stb)
+	function Bo(yg, yo, rs, gor, Co, p, Pb, T, FO2, FO3)
+		# yg, Gas specific gravity
+		# yo, oil specific gravity
+		# rs, solution gas-oil ratio of saturated oil, scf/stb
+		# gor, Gas oil ratio in scf/stb
+		# Co, Oil compressibility, 1/psi
+		# P, Pressure, psia
+		# Pb, bubble point pressure, psia
+		# T, in °F
+		# FO2, Tuning factor
+		# FO3, Tuning factor
+	    if (p <= Pb) 	# saturated oil
+	        F = rs * (yg / yo) ^ 0.5 + 1.25 * T
+	        FVF = 0.972 * FO2 + 0.000147 * FO3 * F ^ 1.175
+		else 			# undersaturated oil
+	        F = gor * (yg / yo) ^ 0.5 + 1.25 * T
+	        Bob = 0.972 * FO2 + 0.000147 * FO3 * F ^ 1.175
+	        FVF = Bob * exp(Co * (Pb - p))
+		end
+		FVF
+	end
+
+	# oil compressibility (Co 1/psi) from Vazquez and Beggs
+	function Co(yg, yo, Rsb, API, p, T, FO4)
+		#yg, Gas specific gravity
+		#yo, oil specific gravity
+		#Rsb, gas solubility at the bubble-point pressure in scf/stb
+		#API, API of the oil
+		#P, Pressure, psia
+		#T, in °F
+		#FO4, Tuning factor
+		#Pb Bubble point pressure, psia
+		ygS = yg * (1 + 0.00005912 * yo * 60 * log10(14.7 / 114.7))
+		Co = FO4 * (-1433 + 5 * Rsb + 17.2 * T - (1180 * ygS) + 12.61 * API) / (p * 100000)
+		return Co
+	end
+
+	
+	# oil density [saturated and undersaturated] in kg/m³ from Beggs and Robinson.
+	function ρOil(yo, yg, Rs, GOR, Bo, p, Pb)
+		#yg, Gas specific gravity
+		#yo, oil specific gravity
+		#Rs, solution gas-oil ratio of saturated oil, m^3/m^3
+		#GOR, Gas oil ratio in m^3/m^3 (undersaturated oil)
+		#Bo, oil formation volume factor, m^3/m^3
+		#p pressure, psia
+		#Pb bubblepoint pressure, psia
+    	if (p < Pb)
+        	ρ = (yo * 1000 + Rs * 1.223 * yg) / Bo         # [kg/m3]
+    	else
+        	ρ = (yo * 1000 + GOR * 1.223 * SGg) / Bo
+    	end
+	end
+
+	# ------------------------< plotting >---------------------------
+	pp = range(500,pb+1000)
+	n = length(pp)
+	# solution gas-oil ratio plot
+	solub = zeros(n)
+	oilFVF = zeros(n)
+	yo = γoil(API)
+	for i=1:n
+		if pp[i] > pb
+			solub[i] = Rs(API,γg,T,pb,TF01)
+			compress = Co(γg, yo, solub[i], API, pp[i], T, TF04)
+		else
+			solub[i] = Rs(API,γg,T,pp[i],TF01)
+			compress = Co(γg, yo, solub[i], API, pp[i], T, TF04)
+		end
+		oilFVF[i] = Bo(γg, yo, solub[i], solub[i], compress, pp[i], pb, T, TF02, TF04)
+	end
+	plot(pp, solub, label=false, lw=2, ylabel="Rs [scf/stb]", xlabel="pressure [psia]")
+	plot!(twinx(), pp, oilFVF, label=false, c=:black, lw=2, ylabel="Bo [rb/stb]")
+	plot!(framestyle=:box, grid=true)
+end
+
+# ╔═╡ 583d3645-349f-45c9-bdcd-e6d8733f2f57
+md"""
+Principais propriedades utilizadas ao longo do curso
+
+![](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/images/fluid-props.png?raw=true)
+"""
+
+# ╔═╡ 17002149-6561-40ee-ae97-a66edf90ab45
+details(
+	md"""**Exercício 1.** A razao de solubilidade de um óleo bruto é 600 scf/stb a 4475 psia ( 308.5 bara) e 140 °F (60 °C). Estimar através de correlações: (a) densidade, (b) viscosidade, (c) fator volume de formação do petroleo bruto (dead oil) e do gás na pressão de 3745 psia (d) Plotar o gráficos Bo, Bg, Rs, $\mu_o$, $\mu_g$ versus pressao. Dados PVT: Pressão de bolha: 2745 psia e densidade do óleo: 35° API. A composição do gás é:
+	
+	| Componente | fração (mol/mol) | Componente | fração (mol/mol) |
+	|:----------:|:----------------:|:----------:|:----------------:|
+	| c1 | 0.775 | c2 | 0.083 |
+	| c3 | 0.021 | c4 | 0.008 |
+	| ic5 | 0.011 | N$_2$ | 0.002 |
+	| CO$_2$ | 0.080 | H$_2$S | 0.020 |
+	
+	
+	""",
+	md"""
+	Considerar as impurezas na composição do gás!
+	"""
+)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1392,5 +1558,9 @@ version = "1.4.1+2"
 # ╠═577aeba6-cb63-448f-8cc3-26909a6cc366
 # ╟─d3a77c87-e7f8-4369-9c01-3ebce4c8b15b
 # ╠═c170545d-9a51-444f-814d-c109d3ef8311
+# ╟─2e1d5ff0-2597-43f6-89bf-416121f17663
+# ╟─a874ace1-3706-4e47-a682-cde5f529538d
+# ╟─583d3645-349f-45c9-bdcd-e6d8733f2f57
+# ╟─17002149-6561-40ee-ae97-a66edf90ab45
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
