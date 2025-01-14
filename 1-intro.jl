@@ -373,7 +373,7 @@ end
 # ╔═╡ 583d3645-349f-45c9-bdcd-e6d8733f2f57
 md"""
 !!! info "Complementar o 'Guia de sobrevivência de R2'"
-	Incrementar este [notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou esta [planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm) com funções/ferramentas "faltantes", como mencionado em sala de aula, este curso _requer_ conhecimento _mínimo_ de: Python, MS Excel/Libre Calc, C/C++ (precisarão utilizar uma destas ferramentas nas entregas dos trabalhos/projetos).
+	Incrementar este [notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou esta [planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm?raw=true) com funções/ferramentas "faltantes", como mencionado em sala de aula, este curso _requer_ conhecimento _mínimo_ de: Python, MS Excel/Libre Calc, C/C++ (precisarão utilizar uma destas ferramentas nas entregas dos trabalhos/projetos).
 
 	Se você é **completamente novo** em "programação", sugiro fortemente voltar a notebooks das disciplinas de introdução a computação ou pode achar mais útil voltar a [este notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/PythonReview-5f9b17e12cd24396afae8659c2c1a392?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) depois de ter feito alguns tutoriais e escrito algum código próprio... com auxílio [desta revisão](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/0-review-comp-tools.pdf)
 
@@ -398,7 +398,7 @@ details(
 	md"""
 	Considerar as impurezas na composição do gás! correlação de **Whichert & Aziz (1972)**
 
-	Reutilizar e incrementar as funções contidas [neste notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou [nesta planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm)
+	Reutilizar e incrementar as funções contidas [neste notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou [nesta planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm?raw=true)
 	"""
 )
 
