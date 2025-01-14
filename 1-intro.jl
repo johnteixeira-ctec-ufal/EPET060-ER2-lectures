@@ -372,6 +372,11 @@ end
 
 # ╔═╡ 583d3645-349f-45c9-bdcd-e6d8733f2f57
 md"""
+!!! info "Complementar o 'Guia de sobrevivência de R2'"
+	Incrementar este [notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou esta [planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm) com funções/ferramentas "faltantes", como mencionado em sala de aula, este curso _requer_ conhecimento _mínimo_ de: Python, MS Excel/Libre Calc, C/C++ (precisarão utilizar uma destas ferramentas nas entregas dos trabalhos/projetos).
+
+	Se você é **completamente novo** em "programação", sugiro fortemente voltar a notebooks das disciplinas de introdução a computação ou pode achar mais útil voltar a [este notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/PythonReview-5f9b17e12cd24396afae8659c2c1a392?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) depois de ter feito alguns tutoriais e escrito algum código próprio... com auxílio [desta revisão](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/0-review-comp-tools.pdf)
+
 Principais propriedades utilizadas ao longo do curso
 
 ![](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/images/fluid-props.png?raw=true)
@@ -391,7 +396,9 @@ details(
 	
 	""",
 	md"""
-	Considerar as impurezas na composição do gás!
+	Considerar as impurezas na composição do gás! correlação de **Whichert & Aziz (1972)**
+
+	Reutilizar e incrementar as funções contidas [neste notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou [nesta planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm)
 	"""
 )
 
@@ -1555,9 +1562,9 @@ version = "1.4.1+2"
 # ╟─24d45f40-d163-11ef-052e-178c849ce1b2
 # ╟─d3bc40d5-94c5-4ea4-af59-6bef1b24eb67
 # ╟─8b2722e6-a3f0-4c5c-b819-7160aa77de4b
-# ╠═577aeba6-cb63-448f-8cc3-26909a6cc366
+# ╟─577aeba6-cb63-448f-8cc3-26909a6cc366
 # ╟─d3a77c87-e7f8-4369-9c01-3ebce4c8b15b
-# ╠═c170545d-9a51-444f-814d-c109d3ef8311
+# ╟─c170545d-9a51-444f-814d-c109d3ef8311
 # ╟─2e1d5ff0-2597-43f6-89bf-416121f17663
 # ╟─a874ace1-3706-4e47-a682-cde5f529538d
 # ╟─583d3645-349f-45c9-bdcd-e6d8733f2f57
