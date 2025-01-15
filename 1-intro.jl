@@ -58,7 +58,7 @@ end
 	.plutoui-toc {
 	    font-size: 90%;
 		border-radius: 50px;
-  		background: #73AD21;
+  		background:rgba(209, 202, 202, 0.84);
 	}
 	.admonition-title {
 	 	color: var(--pluto-output-h-color) !important;
@@ -155,6 +155,13 @@ end
 
 # ╔═╡ 577aeba6-cb63-448f-8cc3-26909a6cc366
 TableOfContents(title="Índice")
+
+# ╔═╡ 7730ee69-60dc-4f93-8fc3-afc6df85f2c9
+md"""
+# EPET060 - Engenharia de Reservatórios 2
+
+Prof. Jonathan C. Teixeira
+"""
 
 # ╔═╡ d3a77c87-e7f8-4369-9c01-3ebce4c8b15b
 md"""
@@ -1563,6 +1570,7 @@ version = "1.4.1+2"
 # ╟─d3bc40d5-94c5-4ea4-af59-6bef1b24eb67
 # ╟─8b2722e6-a3f0-4c5c-b819-7160aa77de4b
 # ╟─577aeba6-cb63-448f-8cc3-26909a6cc366
+# ╟─7730ee69-60dc-4f93-8fc3-afc6df85f2c9
 # ╟─d3a77c87-e7f8-4369-9c01-3ebce4c8b15b
 # ╟─c170545d-9a51-444f-814d-c109d3ef8311
 # ╟─2e1d5ff0-2597-43f6-89bf-416121f17663
