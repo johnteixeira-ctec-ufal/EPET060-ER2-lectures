@@ -391,7 +391,7 @@ Principais propriedades utilizadas ao longo do curso
 
 # ╔═╡ 17002149-6561-40ee-ae97-a66edf90ab45
 details(
-	md"""**Exercício 1.** A razao de solubilidade de um óleo bruto é 600 scf/stb a 4475 psia ( 308.5 bara) e 140 °F (60 °C). Estimar através de correlações: (a) densidade, (b) viscosidade, (c) fator volume de formação do petroleo bruto (dead oil) e do gás na pressão de 3745 psia (d) Plotar o gráficos Bo, Bg, Rs, $\mu_o$, $\mu_g$ versus pressao. Dados PVT: Pressão de bolha: 2745 psia e densidade do óleo: 35° API. A composição do gás é:
+	md"""**Atividade de Revisão 1.** A razao de solubilidade de um óleo bruto é 600 scf/stb a 4475 psia ( 308.5 bara) e 140 °F (60 °C). Estimar através de correlações: (a) densidade, (b) viscosidade, (c) fator volume de formação do petroleo bruto (dead oil) e do gás na pressão de 3745 psia (d) Plotar o gráficos Bo, Bg, Rs, $\mu_o$, $\mu_g$ versus pressao. Dados PVT: Pressão de bolha: 2745 psia e densidade do óleo: 35° API. A composição do gás é:
 	
 	| Componente | fração (mol/mol) | Componente | fração (mol/mol) |
 	|:----------:|:----------------:|:----------:|:----------------:|
@@ -405,7 +405,7 @@ details(
 	md"""
 	Considerar as impurezas na composição do gás! correlação de **Whichert & Aziz (1972)**
 
-	Reutilizar e incrementar as funções contidas [neste notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou [nesta planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm?raw=true)
+	Reutilizar e incrementar as funções contidas [neste notebook](https://deepnote.com/workspace/catota-20071116-0321-4241-9448-9d0d80f4238f/project/PythonNotebook-baf66934-dceb-4c5b-8ae6-6441fc9126f8/notebook/pvt-correlations-408f1a09390043859c4b5046d50fac4c?utm_source=share-modal&utm_medium=product-shared-content&utm_campaign=notebook&utm_content=baf66934-dceb-4c5b-8ae6-6441fc9126f8) ou [nesta planilha](https://github.com/johnteixeira-ctec-ufal/EPET060-ER2-lectures/blob/main/template-report-projeto.xlsm?raw=true), para resolução da atividade.
 	"""
 )
 
