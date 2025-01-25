@@ -5,7 +5,7 @@ using Markdown
 using InteractiveUtils
 
 # ╔═╡ 649f0a40-d2b6-11ef-35b1-1b03e779fe68
-using Plots, PlutoUI, HypertextLiteral, Plots, Distributions, Random, StatsBase
+using Plots, PlutoUI, HypertextLiteral, Plots, Distributions, Random, StatsBase, Printf
 
 # ╔═╡ 45bdfa3b-ecc1-48ab-b3c6-d02c9667958d
 begin
@@ -143,6 +143,22 @@ end
 
 # ╔═╡ bd08075f-3656-4c31-8795-347d87f3fb15
 TableOfContents(title="Índice")
+
+# ╔═╡ f6713882-6433-430b-9f6d-41d1d0162909
+begin
+	Base.show(io::IO, f::Float64) = @printf(io, "%.4f", f)
+	@htl"""
+	<button onclick="present()">Apresentar</button>
+	<div style="margin-top:3em;margin-bottom:7em;">
+	</div>
+	<title>Engenharia de Reservatórios 2</title>
+	<subtitle>Estimativa de reservas</subtitle>
+	<author>Jonathan da Cunha Teixeira</author>
+	<email><a href="mailto:jonathan.teixeira@ctec.ufal.br">jonathan.teixeira@ctec.ufal.br<a/></email>
+	<semester>Engenharia de Petróleo<br>Universidade Federal de Alagoas</semester>
+	<hr style="border-top:8px dashed;margin:2em 0em;"/>
+	"""
+end
 
 # ╔═╡ a03358fb-4705-470c-a003-3f1a73176388
 md"""
@@ -582,6 +598,7 @@ Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 
@@ -599,7 +616,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.10.7"
 manifest_format = "2.0"
-project_hash = "af6b1c4294d0432195c8e8e2d4865d15eae6a5de"
+project_hash = "aa9273fc0744532f2733cbdd7359b38c76aee77d"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -1839,6 +1856,7 @@ version = "1.4.1+2"
 # ╟─45bdfa3b-ecc1-48ab-b3c6-d02c9667958d
 # ╟─b5f5e3bd-0fc6-423a-9fd4-7624adce42ec
 # ╟─bd08075f-3656-4c31-8795-347d87f3fb15
+# ╟─f6713882-6433-430b-9f6d-41d1d0162909
 # ╟─a03358fb-4705-470c-a003-3f1a73176388
 # ╟─7dc246f0-19b1-40b9-bf95-60050b466e0c
 # ╟─7e372d7d-6159-48c9-a7fe-6fc7ff2f5dd7

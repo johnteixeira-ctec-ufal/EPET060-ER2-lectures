@@ -17,7 +17,7 @@ macro bind(def, element)
 end
 
 # ╔═╡ 24d45f40-d163-11ef-052e-178c849ce1b2
-using Plots, PlutoUI, HypertextLiteral, Plots
+using Plots, PlutoUI, HypertextLiteral, Plots, Printf
 
 # ╔═╡ d3bc40d5-94c5-4ea4-af59-6bef1b24eb67
 begin
@@ -155,6 +155,22 @@ end
 
 # ╔═╡ 577aeba6-cb63-448f-8cc3-26909a6cc366
 TableOfContents(title="Índice")
+
+# ╔═╡ 6f1033ff-60e6-4da0-a207-eb209b8b9b6e
+begin
+	Base.show(io::IO, f::Float64) = @printf(io, "%.4f", f)
+	@htl"""
+	<button onclick="present()">Apresentar</button>
+	<div style="margin-top:3em;margin-bottom:7em;">
+	</div>
+	<title>Engenharia de Reservatórios 2</title>
+	<subtitle>Apresentação da Disciplina</subtitle>
+	<author>Jonathan da Cunha Teixeira</author>
+	<email><a href="mailto:jonathan.teixeira@ctec.ufal.br">jonathan.teixeira@ctec.ufal.br<a/></email>
+	<semester>Engenharia de Petróleo<br>Universidade Federal de Alagoas</semester>
+	<hr style="border-top:8px dashed;margin:2em 0em;"/>
+	"""
+end
 
 # ╔═╡ 7730ee69-60dc-4f93-8fc3-afc6df85f2c9
 md"""
@@ -415,6 +431,7 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [compat]
 HypertextLiteral = "~0.9.5"
@@ -428,7 +445,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.10.7"
 manifest_format = "2.0"
-project_hash = "64b38ba5602747afd537577c61f5baf51e2b68e9"
+project_hash = "e338a9e59c5ece0d66777796db91498c3657cb06"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -1570,6 +1587,7 @@ version = "1.4.1+2"
 # ╟─d3bc40d5-94c5-4ea4-af59-6bef1b24eb67
 # ╟─8b2722e6-a3f0-4c5c-b819-7160aa77de4b
 # ╟─577aeba6-cb63-448f-8cc3-26909a6cc366
+# ╟─6f1033ff-60e6-4da0-a207-eb209b8b9b6e
 # ╟─7730ee69-60dc-4f93-8fc3-afc6df85f2c9
 # ╟─d3a77c87-e7f8-4369-9c01-3ebce4c8b15b
 # ╟─c170545d-9a51-444f-814d-c109d3ef8311
