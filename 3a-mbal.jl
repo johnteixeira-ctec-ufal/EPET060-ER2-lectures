@@ -46,7 +46,6 @@ end
 	.plutoui-toc {
 	    font-size: 90%;
 		border-radius: 50px;
-  		background:rgba(209, 202, 202, 0.84);
 	}
 	.admonition-title {
 	 	color: var(--pluto-output-h-color) !important;
@@ -474,7 +473,7 @@ let
 	mixture = MultiComponentMixture(props)
 	eos = GenericCubicEOS(mixture)
 	# Constant mole fractions, vary p-T
-	z = [0.5, 0.2, 0.3]
+	z = [0.5, 0.3, 0.2]
 	p  = range(p0, p1, length = ns)
 	T = range(T0, T1, length = ns)
 	cond = (p = p0, T = T0, z = z)
@@ -654,7 +653,7 @@ $$G_p = G\left[1 - \frac{B_{gi}}{B_g}\times\frac{S_{gr}}{S_{gi}}\right]$$
 details(
 	md"""**Atividade de Revisão 2.** Calcule o influxo de água para o sistema reservatório-aquífero, usando os valores do histórico de pressão da Tabela abaixo. Suponha um aquífero infinito. Encontre o influxo de água em cada passo de tempo, usando van Everdingen & Hurst e compare o resultado com os modelos de Carter-Tracy, Fetkovich, Schilthuis.
 
-	| tempo (dias) | pressão rreservatório (psia) |
+	| tempo (dias) | pressão reservatório (psia) |
 	| ----------- | ------------------------ |
 	| 0 | 3793 |
 	| 91,5 | 3788 |
@@ -898,7 +897,7 @@ PlutoUI = "~0.7.60"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.7"
+julia_version = "1.10.8"
 manifest_format = "2.0"
 project_hash = "fa863f2d0ab31335c395a344f68d79ecb661b412"
 

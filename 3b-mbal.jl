@@ -135,7 +135,6 @@ end
 	.plutoui-toc {
 	    font-size: 90%;
 		border-radius: 50px;
-  		background:rgba(209, 202, 202, 0.84);
 	}
 	.admonition-title {
 	 	color: var(--pluto-output-h-color) !important;
@@ -331,8 +330,8 @@ $$G = m\frac{B_{oi}}{B_{gi}}N$$
 
 | Status |  Fase | Propriedade | Volume  |
 | -------| ------| ------------| ------- |
-| Inicialmente | gás | $B_{gi}$ | $GB_{oi}$|
-| Depletando...| gás | $B_{g}$ | $GB_{o}$|
+| Inicialmente | gás | $B_{gi}$ | $GB_{gi}$|
+| Depletando...| gás | $B_{g}$ | $GB_{g}$|
 
 Portanto,
 
@@ -489,7 +488,7 @@ md"""
 
 A partir das caracteristicas teremos:
 
-$$NE_o + \cancel{NE_g} + \cancel{W_e} + (1+\cancel{m})NE_{wr} = N_pB_o + N_p\cancel{(R_p - R_s)}B_g + \cancel{W_p B_w}$$
+$$NE_o + \cancel{m}NE_g + \cancel{W_e} + (1+\cancel{m})NE_{wr} = N_pB_o + N_p\cancel{(R_p - R_s)}B_g + \cancel{W_p B_w}$$
 
 Portanto,
 
@@ -758,7 +757,8 @@ Nesta fase, termos a ocorrência de:
 
 A partir das suposições anteriores, teremos:
 
-$$NE_o + \cancel{NE_g} + \cancel{W_e} + \cancel{(1+m)NE_{wr}} = F = N_pB_o + N_p(R_p - R_s)B_g + \cancel{W_p B_w}$$
+$$NE_o + \cancel{m}NE_g + \cancel{W_e} + \cancel{(1+m)NE_{wr}} = F = N_pB_o + N_p(R_p - R_s)B_g +$$
+$$+\cancel{W_p B_w}$$
 
 Portanto,
 
@@ -1112,7 +1112,7 @@ Ao final teremos a seguinte tabela de valores
 | 2755 | 0.668024 | 4.89851 | 690.585 | 3382.84 |
 
 !!! info "Atividade de fixação"
-	Terminar o exercício para as outras pressão (fazer à 🤚) e repetir com o método de Muskat, porém, agora resolvendo numericamente a EDO (método de Euler). Além dissi, refazer o exercício, agora utilizando o método de Tarner.
+	Terminar o exercício para as outras pressão (fazer à 🤚) e repetir com o método de Muskat, porém, agora resolvendo numericamente a EDO (método de Euler). Além disso, refazer o exercício, agora utilizando o método de Tarner.
 """
 )
 
@@ -1358,28 +1358,6 @@ let
 	scatter!(Nₚ, y, label="", xlabel="Nₚ", ylabel="F / (Eₒ + BₒᵢEᵩₐ)", title="Método de Sills (1996)")	
 end
 
-# ╔═╡ a6c5918d-d321-4fa3-9895-34f2ecc09b39
-let
-	cᵩ = 2.28e-6
-	sw = 0.208
-	cₐ = 3.2e-6
-	p = [3093, 3017, 2695, 2640, 2461, 2318, 2071, 1903,  1698]
-	Nₚ = [1e-12, 200671, 1322730, 1532250, 2170810, 2579850, 3208410, 3592730, 4011570]
-	Wₚ = [0, 0, 7, 10, 29, 63, 825, 11138, 97446]
-	Gₚ = [0, 98063, 814420, 894484, 1359270, 1826800, 2736410, 3401290, 4222680]
-	bo = [1.3101, 1.3113, 1.2986, 1.2942, 1.2809, 1.2700, 1.2489, 1.2360, 1.2208]
-	Rso =[504, 504, 470.9, 461.2, 430.7, 406.2, 361.7, 331.5, 294.6]
-	bg = [0.000950, 0.000995, 0.001133, 0.001150, 0.001239, 0.001324, 0.001505, 0.001663, 0.001912]
-	bw = [1.0334, 1.0336, 1.0345, 1.0346, 1.0350, 1.0353, 1.0359, 1.0363, 1.0367]
-	# computations
-	Eo = bo .- bo[1] .+ (Rso[1] .- Rso) .* bg
-	Ewf = (cᵩ + cₐ * sw) / (1 - sw) .* (p[1] .- p)
-	F = Nₚ .* (bo .+ (Gₚ./Nₚ .- Rso) .* bg) .+ Wₚ .* bw
-	y = F ./ (Eo .+ bo[1] .* Ewf); y[1]=0
-	plot(F, y, label="", lw=3, xlabel="F", ylabel="F / (Eₒ + BₒᵢEᵩₐ)", title="Método de Sills (1996)")
-	scatter!(F, y, label="", xlabel="F", ylabel="F / (Eₒ + BₒᵢEᵩₐ)", title="Método de Sills (1996)")	
-end
-
 # ╔═╡ f4d19003-3654-4d4a-9e56-b659c730bc4d
 md"""
 !!! info "Diagnóstico preliminar"
@@ -1412,7 +1390,7 @@ PlutoUI = "~0.7.60"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.7"
+julia_version = "1.10.8"
 manifest_format = "2.0"
 project_hash = "82544714f2c2222e5c9d52dc403f872afca0caf5"
 
@@ -2978,7 +2956,6 @@ version = "1.4.1+2"
 # ╟─853a6608-8c24-4c8a-b959-96414e0fad5d
 # ╟─b8a90732-8731-48f6-8770-43ff15a6700f
 # ╟─ea8c958a-d285-4f2b-a512-cf2938d2d363
-# ╟─a6c5918d-d321-4fa3-9895-34f2ecc09b39
 # ╟─f4d19003-3654-4d4a-9e56-b659c730bc4d
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

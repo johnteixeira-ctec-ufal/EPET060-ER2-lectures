@@ -46,7 +46,6 @@ end
 	.plutoui-toc {
 	    font-size: 90%;
 		border-radius: 50px;
-  		background: #73AD21;
 	}
 	.admonition-title {
 	 	color: var(--pluto-output-h-color) !important;
@@ -511,7 +510,8 @@ begin
 	# water saturation
 	Sw = 0.15 .+ (0.33-0.15).*rand(n)
 	# Oil volume formation factor
-	Bo = 1.25 .+ (1.6-1.25).*rand(n)
+	# Bo = 1.25 .+ (1.6-1.25).*rand(n)
+	Bo = 0.00125 .+ (0.0026-0.00125).*rand(n)
 	# Net-to-gross
 	Ng = rand(TriangularDist(0.37, 0.75, 0.55),n)
 	# OOIP
@@ -529,7 +529,7 @@ histogram(Vᵣ,label=false, bins=range(1.5e9,2.85e9,15), title="Volume res.")
 histogram(Ng,label=false, bins=range(.37,.75,15), title="Net-to-gross")
 
 # ╔═╡ 4e85879c-b8c5-4a86-ae3b-861179b61ec7
-histogram(Bo,label=false, bins=range(1.25,1.6,15), title="Fator volume-formação óleo")
+histogram(Bo,label=false, bins=range(.00125,.0026,15), title="Fator volume-formação óleo")
 
 # ╔═╡ 7e44405b-bc83-4853-90ed-9df0593bd214
 histogram(Sw,label=false, bins=range(0.15,.33,15), title="Saturação água conata")
@@ -614,7 +614,7 @@ StatsBase = "~0.34.4"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.7"
+julia_version = "1.10.8"
 manifest_format = "2.0"
 project_hash = "aa9273fc0744532f2733cbdd7359b38c76aee77d"
 
@@ -1866,10 +1866,10 @@ version = "1.4.1+2"
 # ╟─f1dfa33c-69e3-45fd-8cdc-607ae3bfc000
 # ╟─24f8f629-d9c7-43cb-a04d-d419e7ec30ff
 # ╟─ea8d52fe-f29a-480d-8660-68439dcbe0c9
-# ╟─22b06cfa-724c-4531-a398-1ffeb25a072f
+# ╠═22b06cfa-724c-4531-a398-1ffeb25a072f
 # ╟─657f94de-dd68-4cf8-9cff-c697b5dc9925
 # ╟─e539a46a-c387-40fb-b682-8745313ccc0c
-# ╟─4e85879c-b8c5-4a86-ae3b-861179b61ec7
+# ╠═4e85879c-b8c5-4a86-ae3b-861179b61ec7
 # ╟─7e44405b-bc83-4853-90ed-9df0593bd214
 # ╟─469f077b-8bb4-4290-98d8-2564f29a4130
 # ╟─990c653d-7d2c-4d4c-a918-4982f68c7ae9
