@@ -814,7 +814,9 @@ Os termos $\color{red}{\text{em vermelho}}$ variam ao longo da produção do res
 
 Assim a expressão da variação fica:
 
-$$\left(\frac{\Delta G_{ps}}{N_b}\right)_{EBM} = B_{ob}\cdot\left(\frac{1}{B_{gj}} - \frac{1}{B_{gj+1}}\right) + \left(\frac{B_{oj+1}}{B_{gj+1}}-R_{sj+1}\right)\left(1 - \frac{N_{pj+1}}{N_b}\right) - \left(\frac{B_{oj}}{B_{gj}}-R_{sj}\right)\left(1 - \frac{N_{pj}}{N_b}\right)$$
+$$\left(\frac{\Delta G_{ps}}{N_b}\right)_{EBM} = B_{ob}\cdot\left(\frac{1}{B_{gj}} - \frac{1}{B_{gj+1}}\right) + $$
+
+$$\left(\frac{B_{oj+1}}{B_{gj+1}}-R_{sj+1}\right)\left(1 - \frac{N_{pj+1}}{N_b}\right) - \left(\frac{B_{oj}}{B_{gj}}-R_{sj}\right)\left(1 - \frac{N_{pj}}{N_b}\right)$$
 
 Para prever o comportamento do reservatório, utilizamos as seguintes variáveis auxiliares: razão gás/óleo instantânea ($R_j$) no j-ésimo tempo, valor médio da razão gás/óleo ($\bar{R}$), dados por:
 
@@ -874,7 +876,9 @@ $$G_r=\frac{V_pS_{o}}{B_{o}}R_{so}+\frac{V_p(1-S_o-S_w)}{B_{g}}$$
 
 Diferenciando o volume de gás e óleo remanescente com respeito a presão:
 
-$$\frac{\partial G_r}{\partial P}=V_p\left[\frac{S_o}{B_o}\frac{\partial R_{so}}{\partial P}-\frac{R_{so}S_o}{B_o^2}\frac{\partial B_{o}}{\partial P}+\frac{R_{so}}{B_o}\frac{\partial S_{o}}{\partial P} - \frac{1}{B_g}\frac{\partial S_{o}}{\partial P}-\frac{1 - S_o - S_w}{B_g^2}\frac{\partial B_{g}}{\partial P}\right]$$
+$$\frac{\partial G_r}{\partial P}=V_p\left[\frac{S_o}{B_o}\frac{\partial R_{so}}{\partial P}-\frac{R_{so}S_o}{B_o^2}\frac{\partial B_{o}}{\partial P}+\frac{R_{so}}{B_o}\frac{\partial S_{o}}{\partial P} - \frac{1}{B_g}\frac{\partial S_{o}}{\partial P}\right]-$$
+
+$$-V_p\left[\frac{1 - S_o - S_w}{B_g^2}\frac{\partial B_{g}}{\partial P}\right]$$
 
 $$\frac{\partial N_r}{\partial P}=V_p\left[\frac{1}{B_o}\frac{\partial S_o}{\partial P}-\frac{S_o}{B_o^2}\frac{\partial B_o}{\partial P}\right]$$
 
