@@ -203,7 +203,7 @@ Método simplificado bastante utilizado na prática de **ajuste de histório** e
 Particularmente útil para:
 
 * **Estudos preliminares de rotina**, pois sua aplicação demandam **menos tempo** que outros metodos;
-* Ajsute de histórico, quando **não há dados suficientes** para utilização de métodos convencionais;
+* Ajuste de histórico, quando **não há dados suficientes** para utilização de métodos convencionais;
 * Estimativas do comportamento (produção e recuperação) quando **há poucos ou nenhum histórico de procução**.
 
 **Obs.**: Muitas vezes é empregado quando há disponibildiade de um histórico razoável/robusto como **estimativa inicial** para a previsão do comportamento ou ajuste de histórico.
