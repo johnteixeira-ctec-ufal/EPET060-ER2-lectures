@@ -28,7 +28,12 @@ end
 # ╔═╡ b5f5e3bd-0fc6-423a-9fd4-7624adce42ec
 @htl"""
 <style>
-	.edit_or_run { position: absolute; }
+	main {
+		margin: 0 auto;
+		max-width: 2000px;
+    	padding-left: max(160px, 10%);
+    	padding-right: max(160px, 10%);
+	}
 
 	pluto-output code pre {
 		font-size: 90%;
